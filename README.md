@@ -22,6 +22,14 @@ O como paquete instalable:
 python -m pip install -e .
 ```
 
+### Prueba rapida
+
+En Windows, para correr el caso C12 -> C13 y validarlo contra la referencia:
+
+```powershell
+.\probar.ps1
+```
+
 ### Uso
 
 ```bash
