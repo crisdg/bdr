@@ -6,10 +6,9 @@ import argparse
 import sys
 from pathlib import Path
 
+from .api import consolidate
 from .compare import compare_files
 from .config import DEFAULT_CONFIG
-from .excel_io import read_rows, write_merged
-from .merge import merge_estimados
 
 MAX_EJEMPLOS = 10
 
@@ -63,13 +62,9 @@ def main(argv: list[str] | None = None) -> int:
             print(f"error: no existe el archivo {etiqueta}: {ruta}", file=sys.stderr)
             return 2
 
-    filas_n = read_rows(args.n, cfg)
-    filas_n1 = read_rows(args.n1, cfg)
-    result = merge_estimados(filas_n, filas_n1, cfg)
-    _print_report(result, args.max_ejemplos)
-
-    write_merged(args.n, args.n1, args.out, result, cfg)
-    print(f"\nresultado escrito en: {args.out}")
+    salida = consolidate(args.n, args.n1, args.out, cfg)
+    _print_report(salida.result, args.max_ejemplos)
+    print(f"\nresultado escrito en: {salida.path}")
 
     if args.reference:
         if not args.reference.exists():

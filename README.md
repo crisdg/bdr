@@ -22,6 +22,18 @@ O como paquete instalable:
 python -m pip install -e .
 ```
 
+### Interfaz grafica
+
+Ventana Tkinter (sin dependencias extra) para correr la consolidacion sin usar la
+terminal: selectores para el Leader `n`, el Leader `n+1` y la carpeta de salida, nombre
+de archivo opcional (default `leader_consolidado.xlsx`) y boton **Procesar**.
+
+```bash
+python -m bdr_leader_merge.gui
+```
+
+Con el paquete instalado tambien esta el comando `bdr-leader-gui`.
+
 ### Prueba rapida
 
 En Windows, para correr el caso C12 -> C13 y validarlo contra la referencia:
@@ -93,8 +105,10 @@ src/bdr_leader_merge/
   model.py      normalizacion de claves/estimados y estructuras del reporte
   merge.py      logica del cruce (independiente de Excel)
   excel_io.py   lectura y escritura preservando el archivo base
+  api.py        consolidate(): entrada unica usada por la CLI y la GUI
   compare.py    validacion contra un archivo de referencia
   cli.py        interfaz de linea de comandos
+  gui.py        interfaz grafica Tkinter
 tests/          pruebas con planillas sinteticas
 ```
 
